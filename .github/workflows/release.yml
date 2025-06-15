@@ -54,7 +54,7 @@ jobs:
 
           # Temporarily remove all pre-release tags (tags containing '-')
           # This prevents them from interfering with changelog generation
-          PRE_RELEASE_TAGS=$(git tag -l | grep '-|+' || true)
+          PRE_RELEASE_TAGS=$(git tag -l | grep -E "(-|\+)" || true)
           if [ -n "$PRE_RELEASE_TAGS" ]; then
             echo "Temporarily removing pre-release tags: $PRE_RELEASE_TAGS"
             echo "$PRE_RELEASE_TAGS" | xargs -r git tag -d
